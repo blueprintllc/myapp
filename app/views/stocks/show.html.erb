@@ -1,0 +1,16 @@
+Here is some info for <%= @stock.ticker %>: <br/><br/>
+
+<Br/><Br/><Br/><Br/>
+
+<% if not(@ideas.nil?) %>
+<%= "There are no ideas for #{@stock.ticker} yet!"%><br/>
+<%=link_to "Add an idea!", :controller=>"ideas", :action=>"new", :ticker_id=>@stock.id %>
+<% else %>
+<%="This has the following ideas:"%><br/>
+<% for idea in @ideas %>
+<p>
+<%= "#{idea.title} - submitted by #{idea.user.email}"%>
+<% x += 1 %>
+<%end%>
+<%end%>
+</p>

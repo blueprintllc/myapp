@@ -1,0 +1,12 @@
+<p> Hello This is your user dashboard page </p>
+
+<% x = 1 %>
+There are the stocks you are currently following:<Br/>
+<% for stock in @stocks %>
+<%= link_to "#{stock.ticker}", stock %>  <br/>
+<% x+=1%>
+<%end%>
+<br/>
+<br/>
+Here are the ideas you've submitted:<br/>
+

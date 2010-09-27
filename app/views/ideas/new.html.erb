@@ -1,0 +1,26 @@
+<h1>New idea</h1>
+
+<p>This is a new idea for <%=@stock1.ticker%> being submit by <%=current_user.email%></p>
+
+<% form_for (@idea) do |f| %>
+
+
+
+<p>
+<b>Stock</b><br />
+<%= @stock1.ticker.upcase%>
+
+</p>
+
+
+
+	<b><%= f.label :title %></b><br />
+	<%= f.text_field :title%><br />
+	
+    <b><%= f.label :description %></b><br />
+    <%= f.text_area :description %>
+
+  <p>
+    <%= f.submit "Create"%>
+  </p>
+<% end %>
