@@ -10,5 +10,6 @@ class User < ActiveRecord::Base
   has_many :ideas
   has_and_belongs_to_many :stocks
 
+  accepts_nested_attributes_for :stocks
 
 end

@@ -1,6 +1,6 @@
 <h1>New idea</h1>
 
-<p>This is a new idea for <%=@stock1.ticker%> being submit by <%=current_user.email%></p>
+<p>This is a new idea for <%=@stock1.ticker%></p>
 
 <% form_for (@idea) do |f| %>
 
@@ -19,6 +19,9 @@
 	
     <b><%= f.label :description %></b><br />
     <%= f.text_area :description %>
+
+<%= hidden_field_tag 'stock_id', @stock1.id %>
+
 
   <p>
     <%= f.submit "Create"%>

@@ -1,12 +1,46 @@
-<p> Hello This is your user dashboard page </p>
+<H1>Welcome to the User Dashboard Page</H1>
 
-<% x = 1 %>
-There are the stocks you are currently following:<Br/>
-<% for stock in @stocks %>
-<%= link_to "#{stock.ticker}", stock %>  <br/>
-<% x+=1%>
+<% if @user.stocks.empty? %>
+  <%="You are not following any stocks!"%><br/>
+<%end%>
+
+<% if not(@user.stocks.empty?)%>
+  Here are the stocks you are following!<br/><br/>
+  <table>
+  <tr>
+  <th>Ticker</th>
+  <th>Price</th>
+  <th>Change</th>
+  </tr>
+  <% for stock in @stocks%>
+    <tr>
+    <td><%=stock.ticker%></td>
+    <td><%="50.24"%></td>
+    <td><%="+0.03%"%></td>
+    <td><%= link_to "Remove", stock, :confirm=>"Are you sure?", :method => :delete %></td>
+    <td><%= link_to "Add Idea", :controller=>'ideas', :action=>'new', :stock_id=>stock.id, :user_id=>@user.id %></td>
+  <%end%>
+
+  </tr>
+  </table>
+<%end%>
+
+<br/><br/>
+Want to follow more? Enter a ticker symbol below.<br/><br/>
+<% form_for [@user,Stock.new] do |f| %>
+<% f.label :ticker %>
+<%= f.text_field :ticker %>
+<%= f.submit "Follow"%>
 <%end%>
 <br/>
 <br/>
-Here are the ideas you've submitted:<br/>
+
+<% if @ideas.empty? %>
+<%="You have no ideas! Add an idea above!"%>
+<%else%>
+Here are your ideas:<br/>
+<% for idea in @ideas %>
+<%= link_to "#{idea.title} WARNING: NOT BUILT YET!!! DON'T CLICK.", idea %><br/>
+<%end%>
+<%end%>
 
