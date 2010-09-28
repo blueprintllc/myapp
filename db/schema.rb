@@ -18,11 +18,10 @@ ActiveRecord::Schema.define(:version => 20100927042838) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "ticker_id"
+    t.integer  "stock_id"
   end
 
   create_table "stocks", :force => true do |t|
-    t.integer  "user_id"
     t.string   "ticker"
     t.datetime "created_at"
     t.datetime "updated_at"
