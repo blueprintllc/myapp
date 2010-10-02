@@ -1,16 +1,14 @@
 Myapp::Application.routes.draw do
-  match 'home/index' => 'home#index'
-  resources :ideas
-  match 'users/dashboard' => 'users#dashboard'
-namespace :user do
-  root :to => "users#dashboard"
-end
 
+
+match 'users/dashboard' => 'users#dashboard', :as => 'user_root'
+  resources :ideas
   resources :stocks, :has_many => [:users]
   root :to => "home#index"
   devise_for :users, :path_names => { :sign_up => "register"}
   resources :users do
-    resources :stocks
+   resources :stocks
+    resources :ideas
   end
 
   # The priority is based upon order of creation:
